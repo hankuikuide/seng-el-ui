@@ -5,9 +5,24 @@
     </el-header>
     <el-main>
       <el-container>
-        <siderbar>1</siderbar>
+        <siderbar></siderbar>
         <el-main>
-          main
+          <el-container>
+            <el-header style="height: 40px; padding: 0 10px;background-color: #fff;">
+              <tabs />
+            </el-header>
+            <el-main>
+              <div v-if="watermark.length" class="watermark">
+                <div v-for="count in watermarkCount" :key="count" class="wrap">
+                  <span class="word">
+                    <span v-for="word in watermark" :key="word">
+                      {{word}}
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </el-main>
+          </el-container>
         </el-main>
       </el-container>
       
@@ -21,10 +36,38 @@
 <script>
 import siderbar from './siderbar.vue'
 import navbar from './navbar.vue'
-
+import tabs from './tabs'
 export default {
-  components: { siderbar, navbar },
+  components: { siderbar, navbar, tabs},
   name: 'se-layout',
+  props:{
+    /**
+     * 水印文字
+     */
+    watermark: {
+      type: Array,
+      required: false,
+      default() {
+        return ["hanseng","用户名Hanseng","2021-09-28"]
+      }
+    },
+  },
+  data(){
+    return {
+      clientWidth: document.documentElement.clientWidth,
+      clientHeight: document.documentElement.clientHeight
+    }
+  },
+  computed:{
+    watermarkCount() {
+      let count = Math.ceil((this.clientWidth * this.clientHeight) / (150 * 150))
+      let rel = []
+      for (let index = 0; index < count; index++) {
+        rel.push(index)
+      }
+      return rel
+    }
+  }
 }
 </script>
 
@@ -44,4 +87,41 @@ export default {
   padding: 0;
 }
 
+
+.watermark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 9999999999999999999;
+  opacity: 0.1;
+  pointer-events: none;
+  word-wrap: break-word;
+  text-align: center;
+  overflow: hidden;
+  font-size: 12px;
+  .wrap {
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    display: inline-block;
+    transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg); /* IE 9 */
+    -moz-transform: rotate(-45deg); /* Firefox */
+    -webkit-transform: rotate(-45deg); /* Safari 和 Chrome */
+    -o-transform: rotate(-45deg); /* Opera */
+    .word {
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 20px;
+      width: 100%;
+      span {
+        width: 100%;
+        display: inline-block;
+      }
+    }
+  }
+}
 </style>
