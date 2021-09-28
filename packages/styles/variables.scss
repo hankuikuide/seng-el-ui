@@ -1,3 +1,32 @@
 // base color
 $base-color:#1B65B9;
 $base-color-light:#3CA0F6;
+$red:#C03639;
+$pink: #E65D6E;
+$green: #67c23a;
+$tiffany: #4AB7BD;
+$yellow:#e6a23c;
+$header-background-color:#f0f2f5;
+$background-color:#f5f7fa;
+$background-color-checked:#ecf5ff;
+$background-color-hover:#f5f7fa;
+// sidebar
+$menu-text-color:#ffffff;
+$menu-active-text-color:$yellow;
+$sub-menu-active-text-color:#f4f4f5;
+$menu-background-color:$base-color;
+$menu-hover-background-color:#ffffff60;
+$sub-menu-background-color: darken($menu-background-color, 10%);
+$sub-menu-hover-background-color:$menu-hover-background-color;
+$side-bar-width: 210px;
+:export {
+    backgroundColor: $background-color;
+    menuTextColor: $menu-text-color;
+    menuActiveText: $menu-active-text-color;
+    subMenuActiveText: $sub-menu-active-text-color;
+    menuBg: $menu-background-color;
+    menuHover: $menu-hover-background-color;
+    subMenuBg: $sub-menu-background-color;
+    subMenuHover: $sub-menu-hover-background-color;
+    sideBarWidth: $side-bar-width;
+}

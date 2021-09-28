@@ -5,7 +5,7 @@
     </el-header>
     <el-main>
       <el-container>
-        <siderbar>asdfadsf</siderbar>
+        <siderbar>1</siderbar>
         <el-main>
           main
         </el-main>
