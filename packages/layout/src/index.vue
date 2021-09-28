@@ -1,23 +1,47 @@
 <template>
   <el-container>
-    <el-header>
-      header
+    <el-header height="65px">
+      <navbar>11</navbar>
     </el-header>
     <el-main>
-      main
+      <el-container>
+        <siderbar>asdfadsf</siderbar>
+        <el-main>
+          main
+        </el-main>
+      </el-container>
+      
     </el-main>
-    <el-footer>
+    <!-- <el-footer >
       footer
-    </el-footer>
+    </el-footer> -->
   </el-container>
 </template>
 
 <script>
+import siderbar from './siderbar.vue'
+import navbar from './navbar.vue'
+
 export default {
-  name: 'se-layout'
+  components: { siderbar, navbar },
+  name: 'se-layout',
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+.el-container {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.el-aside,
+.el-header,
+.el-main {
+  margin: 0;
+  padding: 0;
+}
 
 </style>
