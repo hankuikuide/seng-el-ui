@@ -6,6 +6,35 @@
         <el-scrollbar wrap-class="scrollbar-wrapper" style="height:100%">
           <el-menu ref="menu" unique-opened :default-active="activeMenu" :collapse="isCollapse" :background-color="variables.menuBg"
            :text-color="variables.menuTextColor" :active-text-color="variables.menuActiveText">
+            <template v-for="(item, key) in menus">
+              <menu-link v-if="!item.children" :to="item.path" :key="key">
+                <el-menu-item index="2">
+                  <i class="el-icon-s-home"></i>
+                  <span slot="title">首页</span>
+                </el-menu-item>
+              </menu-link>
+
+              <el-submenu v-else :key="key" :index="key.toString()">
+                  <template slot="title">
+                    <i class="item.icon"></i>
+                    <span>{{ item.text }}</span>
+                  </template>
+                  <menu-link v-for="(menu, subKey) in item.children" :to="menu.path" :key="subKey">
+                    <el-menu-item :index="menu.path">
+                      <i :class="menu.icon"></i>
+                      <span slot="title">{{ menu.text }}</span>
+                    </el-menu-item>
+                  </menu-link>
+              </el-submenu>
+
+            </template>
+             <menu-link :to="'11'" >
+                <el-menu-item index="2">
+                  <i class="el-icon-s-home"></i>
+                  <span slot="title">首页</span>
+                </el-menu-item>
+              </menu-link>
+
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
@@ -19,10 +48,7 @@
               <el-menu-item index="1-7">选项3</el-menu-item>
              
             </el-submenu>
-            <el-menu-item index="2">
-              <i class="el-icon-menu"></i>
-              <span slot="title">导航二</span>
-            </el-menu-item>
+            
             <el-menu-item index="3" disabled>
               <i class="el-icon-document"></i>
               <span slot="title">导航三</span>
@@ -47,9 +73,29 @@
 
 <script>
 import variables from '../../styles/variables.scss'
+import MenuLink from './link.vue'
 
 export default {
-
+  components:{MenuLink},
+  props:{
+        /**
+     * Menus
+     */
+    menus: {
+      type: Array,
+      required: false,
+      default() {
+        return []
+      }
+    },
+  },
+  data(){
+    return {
+    }
+  },
+  mounted(){
+    console.dir(this.menus)
+  },
   computed:{
     isCollapse:{
       get(){
@@ -63,7 +109,6 @@ export default {
       return "1-3"
     },
     variables(){
-      console.dir(variables)
       return variables
     }
   },

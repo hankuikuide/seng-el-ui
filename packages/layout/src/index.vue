@@ -5,7 +5,7 @@
     </el-header>
     <el-main>
       <el-container>
-        <siderbar></siderbar>
+        <siderbar  v-bind='$attrs'></siderbar>
         <el-main>
           <el-container>
             <el-header style="height: 40px; padding: 0 10px;background-color: #fff;">
@@ -41,6 +41,7 @@ export default {
   components: { siderbar, navbar, tabs},
   name: 'se-layout',
   props:{
+
     /**
      * 水印文字
      */
@@ -57,6 +58,8 @@ export default {
       clientWidth: document.documentElement.clientWidth,
       clientHeight: document.documentElement.clientHeight
     }
+  },
+  mounted(){
   },
   computed:{
     watermarkCount() {
