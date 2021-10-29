@@ -28,7 +28,7 @@ let menuData = [{
         "menuId": 3,
         "parentId": 1,
         "text": "首页",
-        "menuView": "/components/imp/HelloWorld",
+        "menuView": "/views/dashboard/index",
         "icon": "el-icon-s-home",
         "affix": true
     },
@@ -37,7 +37,7 @@ let menuData = [{
         "menuId": 4,
         "parentId": 1,
         "text": "分组管理",
-        "menuView": "/components/imp/HelloWorld2",
+        "menuView": "/views/group/index",
         "icon": null
     },
     {
@@ -45,7 +45,7 @@ let menuData = [{
         "menuId": 5,
         "parentId": 1,
         "text": "图表",
-        "menuView": "/components/imp/ECharts",
+        "menuView": "/views/chart/index",
         "icon": null
     },
     {
@@ -88,6 +88,31 @@ let currentUser = {
     loginDate: '20210715'
 }
 
+let config = {
+    //应用编码
+    appKey: "0",
+    //程序版本号
+    version: "9.0.2731.3017",
+    //地区编码
+    areaCode: "Default",
+    //集成页面标题
+    appEntranceTitle: '医保服务云平台_动态修改值',
+    //程序title
+    impTitle: "\u96C6\u6210\u7BA1\u7406\u7CFB\u7EDF_动态修改值",
+    //版权信息
+    copyrightInfo: "\u7248\u6743\u6240\u6709:\u56FD\u65B0\u5065\u5EB7\u4FDD\u969C\u670D\u52A1\u6709\u9650\u516C\u53F8",
+    //首页默认打开的菜单
+    defaultMenu: "3",
+    //默认分页条数
+    defaultPageRowCount: 10,
+    //post 超时时间 单位ms
+    ajaxTimeOut: 90000000,
+    //url前缀 （针对虚拟目录或应用程序部署方式）
+    urlStartWith: "/imp",
+    //前端公用静态文件服务器
+    cisCdnServer: "/sso_static",
+}
+
 
 export function getInfo() {
     return new Promise((resolve) => {
@@ -96,5 +121,11 @@ export function getInfo() {
             menus: menuData,
             currentUser: currentUser
         })
+    })
+}
+
+export function getConfig() {
+    return new Promise((resolve, reject) => {
+        resolve(config)
     })
 }

@@ -1,8 +1,10 @@
 import { Cookies } from '@/utils'
-import { getInfo } from '@/api/app'
+import { getInfo, getConfig } from '@/api/app'
+import i18n from '@/i18n'
 
 const state = {
     sidebarOpened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
+    config: null,
     currentUser: null,
     menus: null
 }
@@ -21,12 +23,29 @@ const mutations = {
     },
     SET_CURRENT_USER: (state, user) => {
         state.currentUser = user
+    },
+    SET_CONFIG: (state, config) => {
+        state.config = config
+        i18n.setLocaleMessage('zh_CN', {
+            "impTitle": config.impTitle,
+            "appEntranceTitle": config.appEntranceTitle
+        });
     }
 }
 
 const actions = {
     toggleSidebar({ commit }) {
         commit('TOGGLE_SIDEBAR')
+    },
+    getConfig({ commit, state }) {
+        return new Promise((resolve, reject) => {
+            getConfig().then((config) => {
+                commit('SET_CONFIG', config)
+                resolve(config)
+            }).catch(error => {
+                reject(error)
+            })
+        })
     },
     getInfo({ commit }) {
         return new Promise((resolve, reject) => {

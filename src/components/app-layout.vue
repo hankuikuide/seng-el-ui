@@ -1,5 +1,15 @@
 <template>
   <se-layout :menus = "menus">
+    <slot slot="center">
+      <transition name="fade-transform" mode="out-in">
+        <keep-alive>
+          <router-view v-if="$route.meta.keepAlive !== false" />
+        </keep-alive>
+      </transition>
+      <transition name="fade-transform" mode="out-in">
+        <router-view v-if="$route.meta.keepAlive === false" />
+      </transition>
+    </slot>
   </se-layout>
 </template>
 

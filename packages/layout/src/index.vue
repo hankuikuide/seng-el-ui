@@ -11,7 +11,7 @@
             <el-header style="height: 40px; padding: 0 10px;background-color: #fff;">
               <tabs />
             </el-header>
-            <el-main>
+            <el-main class="center-wrap">
               <div v-if="watermark.length" class="watermark">
                 <div v-for="count in watermarkCount" :key="count" class="wrap">
                   <span class="word">
@@ -21,11 +21,13 @@
                   </span>
                 </div>
               </div>
+              <div class="center-div">
+                <slot name="center">center</slot>
+              </div>
             </el-main>
           </el-container>
         </el-main>
       </el-container>
-      
     </el-main>
     <!-- <el-footer >
       footer
@@ -40,6 +42,11 @@ import tabs from './tabs'
 export default {
   components: { siderbar, navbar, tabs},
   name: 'se-layout',
+  provide() {
+    return {
+      layoutCmp: this
+    }
+  },
   props:{
 
     /**
@@ -90,6 +97,19 @@ export default {
   padding: 0;
 }
 
+.center-wrap {
+  padding: 0px 8px;
+  margin: 8px 0;
+  height: 100%;
+  max-height: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  .center-div {
+    height: 100%;
+    max-height: 100%;
+    min-width: 900px;
+  }
+}
 
 .watermark {
   position: absolute;

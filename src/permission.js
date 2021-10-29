@@ -4,7 +4,8 @@ import store from './store'
 import XEUtils from 'xe-utils'
 
 router.beforeEach(async(to, from, next) => {
-
+    let appConfig = store.getters.config || await store.dispatch('app/getConfig');
+    console.dir(appConfig)
     try {
         const hasMenus = store.getters.menus
         if (hasMenus) {
@@ -12,10 +13,11 @@ router.beforeEach(async(to, from, next) => {
         } else {
             const { menus } = await store.dispatch('app/getInfo')
             router.addRoute({
-                path: '/imp',
-                name: 'imp',
+                path: '/',
+                name: 'root',
                 component: () =>
                     import ('./components/app-layout'),
+                //redirect: '/' + appConfig.defaultMenu,
                 children: []
             })
             XEUtils.arrayEach(menus, (menu) => {
