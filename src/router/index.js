@@ -3,12 +3,14 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const routes = [{
-        path: '/',
-        name: 'index',
-        component: () =>
-            import ('@/components/app-layout')
-    },
+const routes = [
+    // {
+    //       path: '/',
+    //       name: 'seng',
+    //       component: () =>
+    //           import ('@/components/app-layout')
+
+    //   },
     {
         path: '/login',
         name: 'login'

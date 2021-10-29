@@ -119,6 +119,9 @@ export default {
         this.toLastView(view)
       }
     },
+    isActive(route) {
+      return route.path === this.$route.path
+    },
     closeOthersTags() {
       if (this.$route.path !== this.selectedTag.path) {
         this.$router.push(this.selectedTag)

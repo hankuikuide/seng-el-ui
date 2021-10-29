@@ -14,10 +14,10 @@ router.beforeEach(async(to, from, next) => {
             const { menus } = await store.dispatch('app/getInfo')
             router.addRoute({
                 path: '/',
-                name: 'root',
+                name: 'seng',
                 component: () =>
                     import ('./components/app-layout'),
-                //redirect: '/' + appConfig.defaultMenu,
+                redirect: '/' + appConfig.defaultMenu,
                 children: []
             })
             XEUtils.arrayEach(menus, (menu) => {
@@ -33,7 +33,7 @@ router.beforeEach(async(to, from, next) => {
                     if (menu.menuId === 8) {
                         menu.activeMenu = "/4"
                     }
-                    router.addRoute('imp', {
+                    router.addRoute('seng', {
                         path: '/' + menu.menuId,
                         component: () =>
                             import ('.' + menu.menuView),
