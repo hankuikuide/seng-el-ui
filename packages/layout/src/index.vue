@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header height="65px">
-      <navbar>11</navbar>
+      <navbar :navbarConfig="navbarConfig"></navbar>
     </el-header>
     <el-main>
       <el-container>
@@ -59,6 +59,21 @@ export default {
         return ["hanseng","用户名Hanseng","2021-09-28"]
       }
     },
+    /**
+     * 顶部导航栏配置
+     */
+    navbarConfig: {
+      type: Object,
+      required: false,
+      default() {
+        return {
+          logoUrl: 'images/logo.svg',
+          userHeadUrl: '',
+          appTitle: this.$t('impTitle'),
+          userName: ''
+        }
+      }
+    }
   },
   data(){
     return {

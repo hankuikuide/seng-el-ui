@@ -1,7 +1,7 @@
 <template>
   <div class="tags-warp">
     <el-tabs v-model="activeMenu" @tab-click="handleClick">
-      <el-tab-pane v-for="route in visitedRoutes" :key="route.name" :label="route.label" :name="route.name">
+      <el-tab-pane v-for="route in visitedRoutes" :key="route.name" :label="route.label" :name="route.path">
         <span v-if="route.meta && route.meta.affix" slot="label" class="tab-label tab-label-affix" @contextmenu.prevent.stop="openContextMenu(route, $event)" >
           <i :class="route.meta.icon"></i>&nbsp;{{getMenuName(route.path)}}
         </span>
@@ -134,6 +134,14 @@ export default {
         return
       }
       this.toLastView(view)
+    },
+    toLastView() {
+      const latestView = this.visitedRoutes.slice(-1)[0]
+      if (latestView) {
+        this.$router.push(latestView.path)
+      } else {
+        this.$router.push('/')
+      }
     },
     handleRemove(view) {
       this.closeSelectedTag(view)

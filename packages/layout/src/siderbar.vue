@@ -16,7 +16,7 @@
 
               <el-submenu v-else :key="key" :index="key.toString()">
                   <template slot="title">
-                    <i class="item.icon"></i>
+                    <i :class="item.icon"></i>
                     <span>{{ item.text }}</span>
                   </template>
                   <menu-link v-for="(menu, subKey) in item.children" :to="menu.path" :key="subKey">
