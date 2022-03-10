@@ -37,7 +37,7 @@ const actions = {
     toggleSidebar({ commit }) {
         commit('TOGGLE_SIDEBAR')
     },
-    getConfig({ commit, state }) {
+    getConfig({ commit }) {
         return new Promise((resolve, reject) => {
             getConfig().then((config) => {
                 commit('SET_CONFIG', config)
