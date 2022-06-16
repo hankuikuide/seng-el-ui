@@ -8,6 +8,7 @@
       <template slot="titleIcons">
         <el-button type="primary">主要按扭</el-button>
         <el-button type="success">成功按扭</el-button>
+        <el-button type="success" @click="openMap">跳转到地图页</el-button>
       </template>
       <template slot="icons">
         <span>前端过滤:</span>
@@ -33,6 +34,14 @@
   </div>
 </template>
 
-
+<script>
+export default {
+  methods: {
+    openMap() {
+      this.handleRouter(9);
+    },
+  },
+};
+</script>
 <style>
 </style>

@@ -77,6 +77,14 @@ let menuData = [{
     noCache: true,
     keepAlive: false,
     activeMenu: '/4'
+},
+{
+    "Id": "CE840AA9583592E71F3DB26EE6E41743",
+    "menuId": 9,
+    "parentId": 1,
+    "text": "地图",
+    "menuView": "/views/map/map",
+    "icon": null,
 }
 ]
 

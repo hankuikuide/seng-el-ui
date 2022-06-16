@@ -4,8 +4,7 @@
     <el-container>
       <el-main>
         <el-scrollbar wrap-class="scrollbar-wrapper" style="height:100%">
-          <el-menu ref="menu" unique-opened :default-active="activeMenu" :collapse="isCollapse" :background-color="variables.menuBg"
-           :text-color="variables.menuTextColor" :active-text-color="variables.menuActiveText">
+          <el-menu ref="menu" unique-opened :default-active="activeMenu" :collapse="isCollapse" :background-color="variables.menuBg" :text-color="variables.menuTextColor" :active-text-color="variables.menuActiveText">
             <template v-for="(item, key) in menus">
               <menu-link v-if="!item.children" :to="item.path" :key="key">
                 <el-menu-item index="2">
@@ -15,26 +14,24 @@
               </menu-link>
 
               <el-submenu v-else :key="key" :index="key.toString()">
-                  <template slot="title">
-                    <i :class="item.icon"></i>
-                    <span>{{ item.text }}</span>
-                  </template>
-                  <menu-link v-for="(menu, subKey) in item.children" :to="menu.path" :key="subKey">
-                    <el-menu-item :index="menu.path">
-                      <i :class="menu.icon"></i>
-                      <span slot="title">{{ menu.text }}</span>
-                    </el-menu-item>
-                  </menu-link>
+                <template slot="title">
+                  <i :class="item.icon"></i>
+                  <span>{{ item.text }}</span>
+                </template>
+                <menu-link v-for="(menu, subKey) in item.children" :to="menu.path" :key="subKey">
+                  <el-menu-item :index="menu.path">
+                    <i :class="menu.icon"></i>
+                    <span slot="title">{{ menu.text }}</span>
+                  </el-menu-item>
+                </menu-link>
               </el-submenu>
-
             </template>
-             <menu-link :to="'11'" >
-                <el-menu-item index="2">
-                  <i class="el-icon-s-home"></i>
-                  <span slot="title">首页</span>
-                </el-menu-item>
-              </menu-link>
-
+            <menu-link :to="'11'">
+              <el-menu-item index="2">
+                <i class="el-icon-s-home"></i>
+                <span slot="title">首页</span>
+              </el-menu-item>
+            </menu-link>
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
@@ -46,9 +43,7 @@
               <el-menu-item index="1-4">选项3</el-menu-item>
               <el-menu-item index="1-6">选项3</el-menu-item>
               <el-menu-item index="1-7">选项3</el-menu-item>
-             
             </el-submenu>
-            
             <el-menu-item index="3" disabled>
               <i class="el-icon-document"></i>
               <span slot="title">导航三</span>
@@ -59,7 +54,6 @@
             </el-menu-item>
           </el-menu>
         </el-scrollbar>
-        
       </el-main>
       <el-footer height="40px">
         <div style="cursor: pointer;text-align: left; color:#fff" @click="isCollapse=!isCollapse">
@@ -72,53 +66,49 @@
 </template>
 
 <script>
-import variables from '../../styles/variables.scss'
-import MenuLink from './link.vue'
+import variables from "../../styles/variables.scss";
+import MenuLink from "./link.vue";
 
 export default {
-  components:{MenuLink},
-  props:{
-        /**
+  components: { MenuLink },
+  props: {
+    /**
      * Menus
      */
     menus: {
       type: Array,
       required: false,
       default() {
-        return []
-      }
-    },
-  },
-  data(){
-    return {
-    }
-  },
-  mounted(){
-    console.dir(this.menus)
-  },
-  computed:{
-    isCollapse:{
-      get(){
-        return !this.$store.getters.sidebarOpened
+        return [];
       },
-      set(){
-        this.$store.dispatch('app/toggleSidebar')
-      }
     },
-    activeMenu(){
-      return "1-3"
-    },
-    variables(){
-      return variables
-    }
   },
-  methods:{
-  }
-}
+  data() {
+    return {};
+  },
+  mounted() {},
+  computed: {
+    isCollapse: {
+      get() {
+        return !this.$store.getters.sidebarOpened;
+      },
+      set() {
+        this.$store.dispatch("app/toggleSidebar");
+      },
+    },
+    activeMenu() {
+      return "1-3";
+    },
+    variables() {
+      return variables;
+    },
+  },
+  methods: {},
+};
 </script>
 
 <style lang="scss" scoped>
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .aside {
   background-color: $base-color;
@@ -139,10 +129,10 @@ export default {
   .el-menu {
     ::v-deep {
       .el-menu-item {
-         height: 45px;
-         line-height: 45px;
-         border-top: 1px solid $menu-background-color;
-         border-bottom: 1px solid transparent;
+        height: 45px;
+        line-height: 45px;
+        border-top: 1px solid $menu-background-color;
+        border-bottom: 1px solid transparent;
       }
       .el-submenu__title {
         height: 45px;
@@ -170,13 +160,13 @@ export default {
   font-size: 12px;
   padding: 0;
   div {
-      padding: 0 7px;
-      box-shadow: -1px -2px 2px 0px darken($menu-background-color, 5%);
-      i {
-        width: 40px;
-        text-align: center;
-      }
+    padding: 0 7px;
+    box-shadow: -1px -2px 2px 0px darken($menu-background-color, 5%);
+    i {
+      width: 40px;
+      text-align: center;
     }
+  }
 }
 
 .el-submenu .el-menu-item {
@@ -192,5 +182,11 @@ export default {
 ::v-deep .el-submenu__title:hover,
 .el-menu-item:hover {
   background-color: $menu-hover-background-color !important;
+}
+
+.el-submenu__title i,
+.el-menu-item i,
+::v-deep .el-submenu__icon-arrow {
+  color: #fff;
 }
 </style>

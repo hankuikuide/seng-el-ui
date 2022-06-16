@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-header v-if="showHeader" :height="titleHeight">
+    <el-header v-if="showHeader" :height="titleHeight" :style="autoHeight ? { height: 'initial' } : {}">
       <se-title :type="type">
         {{ title }}
         <slot name="titleIcons" slot="titleIcons"></slot>
@@ -8,7 +8,7 @@
       </se-title>
     </el-header>
     <el-main :class="mainClass">
-      <div class="se-panel-body" :style="panelBodyStyle" :class="autoheight ? 'cl-panel-body-autoheight' : ''">
+      <div class="se-panel-body" :style="panelBodyStyle" :class="autoHeight ? 'cl-panel-body-autoheight' : ''">
         <slot></slot>
       </div>
     </el-main>
